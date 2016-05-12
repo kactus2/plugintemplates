@@ -1,7 +1,8 @@
+// Copyright Tampere University of Technology
 //-----------------------------------------------------------------------------
 // File: SampleSourceAnalyzer.h
 //-----------------------------------------------------------------------------
-// Project: Kactus 2
+// Project: Kactus2
 // Author: Janne Virtanen
 // Date: 12.05.2016
 //
