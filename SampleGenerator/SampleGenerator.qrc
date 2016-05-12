@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>SampleGenerator.png</file>
+    </qresource>
+</RCC>
