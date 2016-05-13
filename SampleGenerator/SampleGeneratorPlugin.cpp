@@ -53,7 +53,7 @@ QString SampleGeneratorPlugin::getVersion() const
 //-----------------------------------------------------------------------------
 QString SampleGeneratorPlugin::getDescription() const
 {
-    return "Gathers each file set within the design by name \"src\" and prints their count.";
+    return "Gathers each fileset from design containing at least one file and prints their count.";
 }
 
 //-----------------------------------------------------------------------------

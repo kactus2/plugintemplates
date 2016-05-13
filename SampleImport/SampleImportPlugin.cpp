@@ -136,6 +136,18 @@ void SampleImportPlugin::import(QString const& input, QSharedPointer<Component> 
 
 	// Apply the highlight.
 	highlighter_->applyHighlight(returnStart, returnEnd, ImportColors::MODELPARAMETER);
+
+	// Get the sample port.
+	QString portName = "Sample";
+	QSharedPointer<Port> port = targetComponent->getPort(portName);
+
+	// If it does not exist, create and append to the ports.
+	if ( !port )
+	{
+		port = QSharedPointer<Port>(new Port());       
+		targetComponent->getPorts()->append(port);
+		port->setName(portName);
+	}
 }
 
 //-----------------------------------------------------------------------------

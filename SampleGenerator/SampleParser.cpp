@@ -67,10 +67,10 @@ void SampleParser::parse(LibraryInterface* library, QSharedPointer<const Design>
 
 	foreach ( QSharedPointer<const Component> fileComponent, components )
 	{
-		// Cull all filesets with matching name.
+		// Cull all filesets with at least one file.
 		foreach ( QSharedPointer<FileSet> fileSet, *fileComponent->getFileSets() )
 		{
-			if ( fileSet->name() == "src" )
+			if ( fileSet->getFiles()->count() > 0 )
 			{
 				// Create entry and append.
 				SampleData s;

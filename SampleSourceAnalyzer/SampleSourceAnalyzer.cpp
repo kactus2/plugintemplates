@@ -99,7 +99,7 @@ QStringList SampleSourceAnalyzer::getSupportedFileTypes() const
 //-----------------------------------------------------------------------------
 QString SampleSourceAnalyzer::calculateHash(QString const& filename)
 {
-    // Try to open the file
+    // Try to open the file.
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text) )
     {
@@ -107,11 +107,15 @@ QString SampleSourceAnalyzer::calculateHash(QString const& filename)
         return 0;
     }
 
-    // Calculate the hash based on file name.
-	// WARNING: This is not a good idea in production code.
-    QCryptographicHash hash(QCryptographicHash::Sha1);
-    hash.addData(file.fileName().toUtf8());
+	// Read the entire file.
+	QTextStream stream(&file);
+	QString fileContent = stream.readAll();
 
+	// Create the hash based on the content.
+    QCryptographicHash hash(QCryptographicHash::Sha1);
+    hash.addData(fileContent.toUtf8());
+
+	// Return the result as a hex string.
     QString result = hash.result().toHex();
     return result;
 }
