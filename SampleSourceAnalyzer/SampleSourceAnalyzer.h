@@ -76,8 +76,6 @@ public:
      *      @param [in] filename  The name of the file.
      *
      *      @return The hash value for the file.
-     *
-     *      @remarks Comments and whitespace are ignored and do not affect the hash value.
      */
     virtual QString calculateHash(QString const& filename);
 
