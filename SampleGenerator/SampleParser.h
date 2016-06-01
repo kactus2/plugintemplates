@@ -35,7 +35,7 @@ public:
     ~SampleParser();
 
     // Returns reference to all parsed SampleData.
-    QList<SampleData>& getParsedData();
+    QSharedPointer<QList<QSharedPointer<SampleData> > > getParsedData();
 
     /*!
      *  Parses all components instantiated in the design and parses them for sample data.
@@ -48,7 +48,7 @@ public:
 private:
 
      //! Collection of data sets.
-	 QList<SampleData> parsedData_;
+	 QSharedPointer<QList<QSharedPointer<SampleData> > > parsedData_;
 };
 
 #endif // SAMPLEPARSER_H

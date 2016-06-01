@@ -16,7 +16,7 @@
 //-----------------------------------------------------------------------------
 // Function: SampleParser::SampleParser()
 //-----------------------------------------------------------------------------
-SampleParser::SampleParser()
+SampleParser::SampleParser() : parsedData_( new QList<QSharedPointer<SampleParser::SampleData> >() )
 {
 }
 
@@ -30,7 +30,7 @@ SampleParser::~SampleParser()
 //-----------------------------------------------------------------------------
 // Function: SampleParser::getParsedData()
 //-----------------------------------------------------------------------------
-QList<SampleParser::SampleData>& SampleParser::getParsedData()
+QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > SampleParser::getParsedData()
 {
     return parsedData_;
 }
@@ -67,15 +67,15 @@ void SampleParser::parse(LibraryInterface* library, QSharedPointer<const Design>
 
 	foreach ( QSharedPointer<const Component> fileComponent, components )
 	{
-		// Cull all filesets with at least one file.
+		// Cull all file sets with at least one file.
 		foreach ( QSharedPointer<FileSet> fileSet, *fileComponent->getFileSets() )
 		{
 			if ( fileSet->getFiles()->count() > 0 )
 			{
 				// Create entry and append.
-				SampleData s;
-				s.fileSet = fileSet;
-				parsedData_.append(s);
+				auto s = QSharedPointer<SampleData>( new SampleData );
+				s->fileSet = fileSet;
+				parsedData_->append(s);
 			}
 		}
 	}

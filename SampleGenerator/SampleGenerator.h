@@ -16,22 +16,32 @@
 #include "SampleParser.h"
 
 #include <Plugins/PluginSystem/IPluginUtility.h>
+#include <IPXACTmodels/Component/Component.h>
 
 class SampleGenerator
 {
 public:
-    SampleGenerator( SampleParser& parser, IPluginUtility* utility );
+    /*!
+     *  The constructor
+     *
+     *      @param [in] parsedData	The data parsed by sample parser.
+     *      @param [in] utility		The utility interface provided for the plugin.
+     */
+    SampleGenerator( QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData,
+		IPluginUtility* utility );
 
     ~SampleGenerator();
 
     /*!
-     *  Prints how much we have parsed data.
-     */
-    void generate() const;
+	*  Generates a file with the names of the file sets within the parsed data.
+	*
+	*      @param [in] topComponent	The top component of the design, where the generation is based to.
+	*/
+    void generate( QSharedPointer<Component> topComponent );
 
 private:
     //! Collection of data sets, one for each Sample.
-    QList<SampleParser::SampleData> parsedData_;
+    QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData_;
     //! The utility used to print message and etc.
     IPluginUtility* utility_;
 };
