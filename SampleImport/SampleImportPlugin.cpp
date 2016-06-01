@@ -22,7 +22,6 @@
 //-----------------------------------------------------------------------------
 SampleImportPlugin::SampleImportPlugin(): QObject(0), highlighter_(0)
 {
-
 }
 
 //-----------------------------------------------------------------------------
@@ -54,7 +53,7 @@ QString SampleImportPlugin::getVersion() const
 //-----------------------------------------------------------------------------
 QString SampleImportPlugin::getDescription() const
 {
-    return "Highlight the first main and return value of a C/C++ file.";
+    return "Highlight the first main and return value of a C/C++ file. Adds a port to the component.";
 }
 
 //-----------------------------------------------------------------------------

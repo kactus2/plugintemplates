@@ -53,8 +53,8 @@ QString SampleGeneratorPlugin::getVersion() const
 //-----------------------------------------------------------------------------
 QString SampleGeneratorPlugin::getDescription() const
 {
-	return "Gathers each file set from design containing at least one file and generates a file with the names \
-		   of the file sets.";
+	return "Gathers each file set from design containing at least one file and generates a file with the names "\
+		   "of the file sets.";
 }
 
 //-----------------------------------------------------------------------------
