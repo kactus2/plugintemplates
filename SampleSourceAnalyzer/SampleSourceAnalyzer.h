@@ -27,7 +27,10 @@ class SampleSourceAnalyzer : public QObject, public ISourceAnalyzerPlugin
     Q_INTERFACES(ISourceAnalyzerPlugin)
 
 public:
+	//! The constructor
     SampleSourceAnalyzer();
+	
+	//! The destructor.
     ~SampleSourceAnalyzer();
 
     /*!

@@ -30,6 +30,7 @@ public:
     SampleGenerator( QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData,
 		IPluginUtility* utility );
 
+	//! The destructor.
     ~SampleGenerator();
 
     /*!

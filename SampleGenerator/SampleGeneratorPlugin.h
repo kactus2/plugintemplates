@@ -27,7 +27,10 @@ class SAMPLEGENERATOR_EXPORT SampleGeneratorPlugin : public QObject, public IGen
     Q_INTERFACES(IGeneratorPlugin)
 
 public:
+	//! The constructor.
     SampleGeneratorPlugin();
+	
+	//! The destructor.
     ~SampleGeneratorPlugin();
 
     /*!
