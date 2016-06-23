@@ -79,6 +79,7 @@ void SampleGenerator::generate(QSharedPointer<Component> topComponent)
 
 	// Add the file to file set. Notice that the path is relative to the xml file of the
 	// component where the file belongs to.
-	auto sampleIPXACTFile = QSharedPointer<File>( new File( "sampleGeneratedFile.txt", "textFile" ) );
+	QSharedPointer<File> sampleIPXACTFile =
+	QSharedPointer<File>( new File( "sampleGeneratedFile.txt", "textFile" ) );
 	fileSet->addFile(sampleIPXACTFile);
 }

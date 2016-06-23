@@ -8,5 +8,5 @@ message("You are running qmake on a generated .pro file. This may not work!")
 
 
 HEADERS += ./sampleimport_global.h \
-    ./SampleImporter.h
-SOURCES += ./SampleImporter.cpp
+    ./SampleImportPlugin.h
+SOURCES += ./SampleImportPlugin.cpp

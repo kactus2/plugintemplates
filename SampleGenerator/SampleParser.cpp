@@ -41,7 +41,7 @@ QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > SampleParser::
 void SampleParser::parse(LibraryInterface* library, QSharedPointer<const Design> design)
 {
 	// List of matching components.
-	QList<QSharedPointer<const Component>> components;
+	QList<QSharedPointer<const Component> > components;
 
 	// Go through hardware instances.
     foreach (QSharedPointer<ComponentInstance> instance, *design->getComponentInstances())
@@ -73,7 +73,7 @@ void SampleParser::parse(LibraryInterface* library, QSharedPointer<const Design>
 			if ( fileSet->getFiles()->count() > 0 )
 			{
 				// Create entry and append.
-				auto s = QSharedPointer<SampleData>( new SampleData );
+				QSharedPointer<SampleData> s = QSharedPointer<SampleData>( new SampleData );
 				s->fileSet = fileSet;
 				parsedData_->append(s);
 			}
