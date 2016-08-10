@@ -27,10 +27,10 @@ class SampleSourceAnalyzer : public QObject, public ISourceAnalyzerPlugin
     Q_INTERFACES(ISourceAnalyzerPlugin)
 
 public:
-	//! The constructor
+    //! The constructor
     SampleSourceAnalyzer();
-	
-	//! The destructor.
+    
+    //! The destructor.
     ~SampleSourceAnalyzer();
 
     /*!
@@ -114,8 +114,8 @@ public:
                                      QString const& componentPath,
                                      QString const& filename);
 
-	 //! \brief Returns the external program requirements of the plugin.
-	 virtual QList<IPlugin::ExternalProgramRequirement> getProgramRequirements();
+     //! \brief Returns the external program requirements of the plugin.
+     virtual QList<IPlugin::ExternalProgramRequirement> getProgramRequirements();
 
 private:
     // Disable copying.

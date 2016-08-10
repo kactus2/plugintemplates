@@ -41,14 +41,14 @@ public:
      *  Parses all components instantiated in the design and parses them for sample data.
      *
      *      @param [in] library   The library containing all components in the design.
-	 *      @param [in] design   The design, which component instances are being checked.
+     *      @param [in] design   The design, which component instances are being checked.
      */
     void parse( LibraryInterface* library, QSharedPointer<const Design> design );
 
 private:
 
      //! Collection of data sets.
-	 QSharedPointer<QList<QSharedPointer<SampleData> > > parsedData_;
+     QSharedPointer<QList<QSharedPointer<SampleData> > > parsedData_;
 };
 
 #endif // SAMPLEPARSER_H

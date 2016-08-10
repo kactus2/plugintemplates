@@ -53,8 +53,8 @@ QString SampleGeneratorPlugin::getVersion() const
 //-----------------------------------------------------------------------------
 QString SampleGeneratorPlugin::getDescription() const
 {
-	return "Gathers each file set from design containing at least one file and generates a file with the names "\
-		   "of the file sets.";
+    return "Gathers each file set from design containing at least one file and generates a file with the names "\
+           "of the file sets.";
 }
 
 //-----------------------------------------------------------------------------
@@ -104,7 +104,7 @@ bool SampleGeneratorPlugin::checkGeneratorSupport( QSharedPointer<Document const
     QSharedPointer<Document const> libDesConf,
     QSharedPointer<Document const> libDes ) const
 {
-	// Must be ran on a design.
+    // Must be ran on a design.
     return ( libDes != 0 && libDesConf != 0 );
 }
 
@@ -116,29 +116,29 @@ void SampleGeneratorPlugin::runGenerator( IPluginUtility* utility,
     QSharedPointer<Document> libDesConf,
     QSharedPointer<Document> libDes)
 {
-	// Dynamic cast to component, as it is needed that way.
-	QSharedPointer<Component> topComponent = libComp.dynamicCast<Component>();
-	// Dynamic cast to design, as it is needed that way.
-	QSharedPointer<const Design> design = libDes.dynamicCast<Design const>();
+    // Dynamic cast to component, as it is needed that way.
+    QSharedPointer<Component> topComponent = libComp.dynamicCast<Component>();
+    // Dynamic cast to design, as it is needed that way.
+    QSharedPointer<const Design> design = libDes.dynamicCast<Design const>();
 
-	// In principle, these could be null.
-	if ( !topComponent || !design )
-	{
-		utility->printError( "Sample generator received null top component or design!" );
-	}
+    // In principle, these could be null.
+    if ( !topComponent || !design )
+    {
+        utility->printError( "Sample generator received null top component or design!" );
+    }
 
-	// Parse the matching file sets.
-	SampleParser sparser;
-	sparser.parse(utility->getLibraryInterface(),design);
-	// Generate based on parsed data.
-	SampleGenerator sgnerator(sparser.getParsedData(),utility);
-	sgnerator.generate(topComponent);
+    // Parse the matching file sets.
+    SampleParser sparser;
+    sparser.parse(utility->getLibraryInterface(),design);
+    // Generate based on parsed data.
+    SampleGenerator sgnerator(sparser.getParsedData(),utility);
+    sgnerator.generate(topComponent);
 
-	// Inform when done.
-	utility->printInfo( "Sample generation complete." );
+    // Inform when done.
+    utility->printInfo( "Sample generation complete." );
 
-	// Top component may have been affected by changes -> save.
-	utility->getLibraryInterface()->writeModelToFile(libComp);
+    // Top component may have been affected by changes -> save.
+    utility->getLibraryInterface()->writeModelToFile(libComp);
 }
 
 //-----------------------------------------------------------------------------

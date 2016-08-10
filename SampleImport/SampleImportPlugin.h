@@ -36,11 +36,11 @@ class SAMPLEIMPORT_EXPORT SampleImportPlugin: public QObject, public ImportPlugi
 
 public:
 
-	//! The constructor.
-	SampleImportPlugin();
+    //! The constructor.
+    SampleImportPlugin();
 
-	//! The destructor.
-	~SampleImportPlugin();
+    //! The destructor.
+    ~SampleImportPlugin();
     
     /*!
      *  Returns the name of the plugin.
@@ -95,7 +95,7 @@ public:
      *      @return The warning text.
      */
     virtual QString getCompatibilityWarnings() const;
-	
+    
     /*!
      *  Runs the import by parsing the given input and applying the parsed elements to the given component.
      *
@@ -103,7 +103,7 @@ public:
      *      @param [in] targetComponent     The component to apply all imported changes to.
      */
     virtual void import(QString const& input, QSharedPointer<Component> targetComponent);
-	
+    
     /*!
      *  Sets the given highlighter to be used by the source.
      *
@@ -113,9 +113,9 @@ public:
 
 private:
 
-	// Disable copying.
-	SampleImportPlugin(SampleImportPlugin const& rhs);
-	SampleImportPlugin& operator=(SampleImportPlugin const& rhs);
+    // Disable copying.
+    SampleImportPlugin(SampleImportPlugin const& rhs);
+    SampleImportPlugin& operator=(SampleImportPlugin const& rhs);
 
     //! The highlighter to use.
     Highlighter* highlighter_;

@@ -24,20 +24,20 @@ public:
     /*!
      *  The constructor
      *
-     *      @param [in] parsedData	The data parsed by sample parser.
-     *      @param [in] utility		The utility interface provided for the plugin.
+     *      @param [in] parsedData    The data parsed by sample parser.
+     *      @param [in] utility        The utility interface provided for the plugin.
      */
     SampleGenerator( QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData,
-		IPluginUtility* utility );
+        IPluginUtility* utility );
 
-	//! The destructor.
+    //! The destructor.
     ~SampleGenerator();
 
     /*!
-	*  Generates a file with the names of the file sets within the parsed data.
-	*
-	*      @param [in] topComponent	The top component of the design, where the generation is based to.
-	*/
+    *  Generates a file with the names of the file sets within the parsed data.
+    *
+    *      @param [in] topComponent    The top component of the design, where the generation is based to.
+    */
     void generate( QSharedPointer<Component> topComponent );
 
 private:

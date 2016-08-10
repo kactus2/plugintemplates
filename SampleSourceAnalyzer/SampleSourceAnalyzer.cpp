@@ -107,15 +107,15 @@ QString SampleSourceAnalyzer::calculateHash(QString const& filename)
         return 0;
     }
 
-	// Read the entire file.
-	QTextStream stream(&file);
-	QString fileContent = stream.readAll();
+    // Read the entire file.
+    QTextStream stream(&file);
+    QString fileContent = stream.readAll();
 
-	// Create the hash based on the content.
+    // Create the hash based on the content.
     QCryptographicHash hash(QCryptographicHash::Sha1);
     hash.addData(fileContent.toUtf8());
 
-	// Return the result as a hex string.
+    // Return the result as a hex string.
     QString result = hash.result().toHex();
     return result;
 }
@@ -127,38 +127,41 @@ QList<FileDependencyDesc> SampleSourceAnalyzer::getFileDependencies(Component co
                                             QString const& /*componentPath*/,
                                             QString const& filename)
 {
-	// List of found dependencies.
+    // List of found dependencies.
     QList<FileDependencyDesc> dependencies;
 
-	// Open the file for readonly, no need to write it.
+    // Open the file for readonly, no need to write it.
     QFile file(filename);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text) )
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-		// We decide it is easier to read in stream format.
-        QTextStream sourceStream(&file);
-        while(!sourceStream.atEnd())
+        // File could not be opened, return.
+        return dependencies;
+    }
+    
+    // We decide it is easier to read in stream format.
+    QTextStream sourceStream(&file);
+    while (!sourceStream.atEnd())
+    {
+        // Next line.
+        const QString currentLine = sourceStream.readLine();
+
+        // Our "pattern": Needs + space denotes that the rest of the line contains dependency filename.
+        QString need("needs ");
+        int needPosition = currentLine.indexOf(need);
+
+        // If found "needs ", proceed with this one.
+        if ( needPosition != -1 )
         {
-			// Next line.
-            const QString currentLine = sourceStream.readLine();
+            int filePosition = needPosition + need.length();
+            QString filename = currentLine.mid(filePosition);
 
-			// Our "pattern": Needs + space denotes that the rest of the line contains dependency filename.
-			QString need("needs ");
-			int needPosition = currentLine.indexOf(need);
-
-			// If found "needs ", proceed with this one.
-			if ( needPosition != -1 )
-			{
-				int filePosition = needPosition + need.length();
-				QString filename = currentLine.mid(filePosition);
-
-				// If found a filename, add it as a dependency.
-				if ( !filename.isEmpty() )
-				{
-					FileDependencyDesc dependency;
-					dependency.filename = filename;
-					dependencies.append(dependency);
-				}
-			}
+            // If found a filename, add it as a dependency.
+            if ( !filename.isEmpty() )
+            {
+                FileDependencyDesc dependency;
+                dependency.filename = filename;
+                dependencies.append(dependency);
+            }
         }
     }
 
@@ -184,5 +187,5 @@ void SampleSourceAnalyzer::endAnalysis(Component const* /*component*/, QString c
 //-----------------------------------------------------------------------------
 QList<IPlugin::ExternalProgramRequirement> SampleSourceAnalyzer::getProgramRequirements()
 {
-	return QList<IPlugin::ExternalProgramRequirement>();
+    return QList<IPlugin::ExternalProgramRequirement>();
 }

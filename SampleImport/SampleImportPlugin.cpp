@@ -120,33 +120,33 @@ QString SampleImportPlugin::getCompatibilityWarnings() const
 //-----------------------------------------------------------------------------
 void SampleImportPlugin::import(QString const& input, QSharedPointer<Component> targetComponent)
 {
-	// Highlight word main.
-	highlighter_->applyHighlight(QString("main"), ImportColors::VIEWNAME);
+    // Highlight word main.
+    highlighter_->applyHighlight(QString("main"), ImportColors::VIEWNAME);
 
-	// Rule for finding a return statement: keyword + white space + alphanumeric symbol.
-	const QRegularExpression RETURN_RULE( "return\\s\\w+;" );
+    // Rule for finding a return statement: keyword + white space + alphanumeric symbol.
+    const QRegularExpression RETURN_RULE( "return\\s\\w+;" );
 
-	// Find it.
-	QRegularExpressionMatch returnS = RETURN_RULE.match(input);
+    // Find it.
+    QRegularExpressionMatch returnS = RETURN_RULE.match(input);
 
-	// Needs start and end locations for highlight.
-	int returnStart = returnS.capturedStart();
-	int returnEnd = returnS.capturedEnd();
+    // Needs start and end locations for highlight.
+    int returnStart = returnS.capturedStart();
+    int returnEnd = returnS.capturedEnd();
 
-	// Apply the highlight.
-	highlighter_->applyHighlight(returnStart, returnEnd, ImportColors::MODELPARAMETER);
+    // Apply the highlight.
+    highlighter_->applyHighlight(returnStart, returnEnd, ImportColors::MODELPARAMETER);
 
-	// Get the sample port.
-	QString portName = "Sample";
-	QSharedPointer<Port> port = targetComponent->getPort(portName);
+    // Get the sample port.
+    QString portName = "Sample";
+    QSharedPointer<Port> port = targetComponent->getPort(portName);
 
-	// If it does not exist, create and append to the ports.
-	if ( !port )
-	{
-		port = QSharedPointer<Port>(new Port());       
-		targetComponent->getPorts()->append(port);
-		port->setName(portName);
-	}
+    // If it does not exist, create and append to the ports.
+    if ( !port )
+    {
+        port = QSharedPointer<Port>(new Port());       
+        targetComponent->getPorts()->append(port);
+        port->setName(portName);
+    }
 }
 
 //-----------------------------------------------------------------------------
