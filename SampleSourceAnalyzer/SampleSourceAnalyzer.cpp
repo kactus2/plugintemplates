@@ -101,7 +101,7 @@ QString SampleSourceAnalyzer::calculateHash(QString const& filename)
 {
     // Try to open the file.
     QFile file(filename);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text) )
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         // File could not be opened, return.
         return 0;
@@ -132,7 +132,7 @@ QList<FileDependencyDesc> SampleSourceAnalyzer::getFileDependencies(Component co
 
     // Open the file for readonly, no need to write it.
     QFile file(filename);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         // File could not be opened, return.
         return dependencies;
@@ -150,13 +150,13 @@ QList<FileDependencyDesc> SampleSourceAnalyzer::getFileDependencies(Component co
         int needPosition = currentLine.indexOf(need);
 
         // If found "needs ", proceed with this one.
-        if ( needPosition != -1 )
+        if (needPosition != -1)
         {
             int filePosition = needPosition + need.length();
             QString filename = currentLine.mid(filePosition);
 
             // If found a filename, add it as a dependency.
-            if ( !filename.isEmpty() )
+            if (!filename.isEmpty())
             {
                 FileDependencyDesc dependency;
                 dependency.filename = filename;
