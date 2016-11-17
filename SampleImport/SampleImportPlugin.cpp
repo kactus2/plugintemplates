@@ -10,6 +10,7 @@
 //-----------------------------------------------------------------------------
 
 #include "SampleImportPlugin.h"
+#include "SampleImportSettingsWidget.h"
 
 #include <IPXACTmodels/Component/Component.h>
 #include <Plugins/PluginSystem/ImportPlugin/ImportColors.h>
@@ -20,7 +21,7 @@
 //-----------------------------------------------------------------------------
 // Function: SampleImport::SampleImport()
 //-----------------------------------------------------------------------------
-SampleImportPlugin::SampleImportPlugin(): QObject(0), highlighter_(0)
+SampleImportPlugin::SampleImportPlugin(): QObject(0), highlighter_(0), settingsModel_(new SampleImportSettingsModel)
 {
 }
 
@@ -29,7 +30,7 @@ SampleImportPlugin::SampleImportPlugin(): QObject(0), highlighter_(0)
 //-----------------------------------------------------------------------------
 SampleImportPlugin::~SampleImportPlugin()
 {
-
+    delete settingsModel_;
 }
 
 //-----------------------------------------------------------------------------
@@ -53,7 +54,7 @@ QString SampleImportPlugin::getVersion() const
 //-----------------------------------------------------------------------------
 QString SampleImportPlugin::getDescription() const
 {
-    return "Highlight the first main and return value of a C/C++ file. Adds a port to the component.";
+    return "Highlights the first main and return value of a C/C++ file. Adds a port to the component.";
 }
 
 //-----------------------------------------------------------------------------
@@ -83,9 +84,17 @@ QString SampleImportPlugin::getLicenceHolder() const
 //-----------------------------------------------------------------------------
 // Function: SampleImport::getSettingsWidget()
 //-----------------------------------------------------------------------------
-PluginSettingsWidget* SampleImportPlugin::getSettingsWidget()
+QWidget* SampleImportPlugin::getSettingsWidget()
 {
-    return new PluginSettingsWidget();
+    return new SampleImportSettingsWidget(settingsModel_);
+}
+
+//-----------------------------------------------------------------------------
+// Function: SampleImport::getSettingsModel()
+//-----------------------------------------------------------------------------
+PluginSettingsModel* SampleImportPlugin::getSettingsModel()
+{
+    return settingsModel_;
 }
 
 //-----------------------------------------------------------------------------
@@ -120,11 +129,14 @@ QString SampleImportPlugin::getCompatibilityWarnings() const
 //-----------------------------------------------------------------------------
 void SampleImportPlugin::import(QString const& input, QSharedPointer<Component> targetComponent)
 {
-    // Highlight word main.
-    highlighter_->applyHighlight(QString("main"), ImportColors::VIEWNAME);
+    if (settingsModel_->getCurrentSettings()->findMain)
+    {
+        // Highlight word main.
+        highlighter_->applyHighlight(QString("main"), ImportColors::VIEWNAME);
+    }
 
     // Rule for finding a return statement: keyword + white space + alphanumeric symbol.
-    const QRegularExpression RETURN_RULE( "return\\s\\w+;" );
+    const QRegularExpression RETURN_RULE("return\\s\\w+;");
 
     // Find it.
     QRegularExpressionMatch returnS = RETURN_RULE.match(input);
@@ -137,11 +149,11 @@ void SampleImportPlugin::import(QString const& input, QSharedPointer<Component> 
     highlighter_->applyHighlight(returnStart, returnEnd, ImportColors::MODELPARAMETER);
 
     // Get the sample port.
-    QString portName = "Sample";
+    QString portName = "Sample" + settingsModel_->getCurrentSettings()->portSuffix;
     QSharedPointer<Port> port = targetComponent->getPort(portName);
 
     // If it does not exist, create and append to the ports.
-    if ( !port )
+    if (!port)
     {
         port = QSharedPointer<Port>(new Port());       
         targetComponent->getPorts()->append(port);

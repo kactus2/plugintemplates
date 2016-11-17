@@ -21,6 +21,8 @@
 #include <QSharedPointer>
 #include <QString>
 
+#include <SampleImportSettingsModel.h>
+
 class Component;
 class View;
 
@@ -75,7 +77,12 @@ public:
     /*!
      *  Returns the settings widget.
      */
-    virtual PluginSettingsWidget* getSettingsWidget();
+    virtual QWidget* getSettingsWidget();
+
+    /*!
+     *  This is used to access the settings modified by function getSettingsModel().
+     */
+    virtual PluginSettingsModel* getSettingsModel();
 
     /*! 
      *   Returns the external program requirements of the plugin.
@@ -119,6 +126,9 @@ private:
 
     //! The highlighter to use.
     Highlighter* highlighter_;
+
+    //! The settings model to use.
+    SampleImportSettingsModel* settingsModel_;
 };
 
 #endif // SAMPLEIMPORTER_H
