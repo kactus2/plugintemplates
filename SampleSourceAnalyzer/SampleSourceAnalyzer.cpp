@@ -81,9 +81,17 @@ QString SampleSourceAnalyzer::getLicenceHolder() const
 //-----------------------------------------------------------------------------
 // Function: SampleSourceAnalyzer::getSettingsWidget()
 //-----------------------------------------------------------------------------
-PluginSettingsWidget* SampleSourceAnalyzer::getSettingsWidget()
+QWidget* SampleSourceAnalyzer::getSettingsWidget()
 {
-    return new PluginSettingsWidget();
+    return new QWidget();
+}
+
+//-----------------------------------------------------------------------------
+// Function: SampleSourceAnalyzer::getSettingsModel()
+//-----------------------------------------------------------------------------
+PluginSettingsModel* SampleSourceAnalyzer::getSettingsModel()
+{
+    return NULL;
 }
 
 //-----------------------------------------------------------------------------

@@ -84,9 +84,17 @@ QString SampleGeneratorPlugin::getLicenceHolder() const
 //-----------------------------------------------------------------------------
 // Function: SampleGeneratorPlugin::getSettingsWidget()
 //-----------------------------------------------------------------------------
-PluginSettingsWidget* SampleGeneratorPlugin::getSettingsWidget()
+QWidget* SampleGeneratorPlugin::getSettingsWidget()
 {
-    return new PluginSettingsWidget();
+    return new QWidget();
+}
+
+//-----------------------------------------------------------------------------
+// Function: SampleGeneratorPlugin::getSettingsModel()
+//-----------------------------------------------------------------------------
+PluginSettingsModel* SampleGeneratorPlugin::getSettingsModel()
+{
+    return NULL;
 }
 
 //-----------------------------------------------------------------------------
