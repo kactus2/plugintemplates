@@ -16,10 +16,6 @@
 //-----------------------------------------------------------------------------
 SampleImportSettingsModel::SampleImportSettingsModel()
 {
-    currentSettings_.findMain = true;
-    currentSettings_.portSuffix = QLatin1String("");
-
-    pendingSettings_ = currentSettings_;
 }
 
 //-----------------------------------------------------------------------------
