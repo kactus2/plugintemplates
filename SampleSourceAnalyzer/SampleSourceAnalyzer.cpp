@@ -59,7 +59,7 @@ QString SampleSourceAnalyzer::getDescription() const
 //-----------------------------------------------------------------------------
 QString SampleSourceAnalyzer::getVendor() const
 {
-    return tr("TUT");
+    return tr("Insert vendor here");
 }
 
 //-----------------------------------------------------------------------------

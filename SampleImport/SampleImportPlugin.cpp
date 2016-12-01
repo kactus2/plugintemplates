@@ -62,7 +62,7 @@ QString SampleImportPlugin::getDescription() const
 //-----------------------------------------------------------------------------
 QString SampleImportPlugin::getVendor() const
 {
-    return tr("TUT");
+    return tr("Insert vendor here");
 }
 
 //-----------------------------------------------------------------------------
