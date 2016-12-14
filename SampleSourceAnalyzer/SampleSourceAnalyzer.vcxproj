@@ -238,6 +238,9 @@
   <ItemGroup>
     <None Include="samplesourceanalyzer.json" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="samplesourceanalyzer_global.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

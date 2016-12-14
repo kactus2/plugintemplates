@@ -7,5 +7,6 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ./SampleSourceAnalyzer.h
+HEADERS += ./SampleSourceAnalyzer.h \
+    ./samplesourceanalyzer_global.h
 SOURCES += ./SampleSourceAnalyzer.cpp

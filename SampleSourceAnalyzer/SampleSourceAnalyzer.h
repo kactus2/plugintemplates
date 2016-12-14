@@ -13,6 +13,8 @@
 #ifndef SAMPLESOURCEANALYZER_H
 #define SAMPLESOURCEANALYZER_H
 
+#include "samplesourceanalyzer_global.h"
+
 #include <Plugins/PluginSystem/ISourceAnalyzerPlugin.h>
 
 #include <QFile>
