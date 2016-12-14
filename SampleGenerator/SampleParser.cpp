@@ -54,17 +54,6 @@ void SampleParser::parse(LibraryInterface* library, QSharedPointer<const Design>
         components.append(fileComponent);
     }
 
-    // Go through software instances (a kactus2 extension).
-    foreach (QSharedPointer<SWInstance> instance, design->getSWInstances())
-    {
-        // The VLNV and the component of the instance are needed.
-        QSharedPointer<VLNV> vlnv = instance->getComponentRef();
-        QSharedPointer<const Component> fileComponent = library->getModelReadOnly(*vlnv).dynamicCast<const Component>();
-
-        // Append to the list of found components.
-        components.append(fileComponent);
-    }
-
     foreach ( QSharedPointer<const Component> fileComponent, components )
     {
         // Cull all file sets with at least one file.

@@ -1,4 +1,3 @@
-// Copyright Tampere University of Technology
 //-----------------------------------------------------------------------------
 // File: SampleGenerator.h
 //-----------------------------------------------------------------------------
@@ -13,22 +12,22 @@
 #ifndef SAMPLEGENERATOR_H
 #define SAMPLEGENERATOR_H
 
+#include "samplegenerator_global.h"
 #include "SampleParser.h"
 
-#include <Plugins/PluginSystem/IPluginUtility.h>
 #include <IPXACTmodels/Component/Component.h>
 
-class SampleGenerator
+class SampleGenerator : public QObject
 {
+    Q_OBJECT
+
 public:
     /*!
      *  The constructor
      *
      *      @param [in] parsedData    The data parsed by sample parser.
-     *      @param [in] utility        The utility interface provided for the plugin.
      */
-    SampleGenerator( QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData,
-        IPluginUtility* utility );
+    SampleGenerator(QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData);
 
     //! The destructor.
     ~SampleGenerator();
@@ -36,15 +35,22 @@ public:
     /*!
     *  Generates a file with the names of the file sets within the parsed data.
     *
-    *      @param [in] topComponent    The top component of the design, where the generation is based to.
+    *      @param [in] topComponent         The top component of the design, where the generated file will be placed.
+    *      @param [in] componentXmlPath     The absolute path to the topComponent.
     */
-    void generate( QSharedPointer<Component> topComponent );
+    void generate(QSharedPointer<Component> topComponent, const QString& outputPath);
+
+signals:
+	
+    /*!
+     *  Emitted when reportable error occurs.
+     */
+	void reportError(const QString& errorMessage) const;
 
 private:
-    //! Collection of data sets, one for each Sample.
+
+    //! The parsed data to be used in the generation.
     QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData_;
-    //! The utility used to print message and etc.
-    IPluginUtility* utility_;
 };
 
 #endif // SAMPLEGENERATOR_H

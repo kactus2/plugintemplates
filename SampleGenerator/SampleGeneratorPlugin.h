@@ -1,4 +1,3 @@
-// Copyright Tampere University of Technology
 //-----------------------------------------------------------------------------
 // File: SampleGeneratorPlugin.h
 //-----------------------------------------------------------------------------
@@ -81,10 +80,10 @@ public:
     /*!
      *  Checks whether the generator may run for the given component or design. 
      *
-     *      @param [in] libComp        The component for which to check support. If libDes is not null, libComp
-     *                              must refer to libDes or libDesConf.
-     *      @param [in] libDesConf    The design configuration for design libDes, if it is not null.
-     *      @param [in] libDes        The design, if the generator is ran for a design.
+     *      @param [in] libComp         The component for which to check support. If libDes is not null, libComp
+     *                                  must refer to libDes or libDesConf.
+     *      @param [in] libDesConf      The design configuration for design libDes, if it is not null.
+     *      @param [in] libDes          The design, if the generator is ran for a design.
      *
      *      @return True, if the generator may run the given component. Otherwise false.
      */
@@ -95,11 +94,11 @@ public:
     /*!
      *  Runs the generation.
      *
-     *      @param [in]            utility            The plugin utility interface.
-     *      @param [in,out]     libComp            The component for which the generator is run. If libDes is not null,
-     *                                          libComp must refer to libDes or libDesConf.
-     *      @param [in, out]    libDesConf        The design configuration for design libDes, if it is not null.
-     *      @param [in, out]    libDes            The design, if the generator is ran for a design.
+     *      @param [in]         utility             The plugin utility interface.
+     *      @param [in,out]     libComp             The component for which the generator is run. If libDes is not null,
+     *                                              libComp must refer to libDes or libDesConf.
+     *      @param [in, out]    libDesConf          The design configuration for design libDes, if it is not null.
+     *      @param [in, out]    libDes              The design, if the generator is ran for a design.
      */
      virtual void runGenerator(IPluginUtility* utility,
          QSharedPointer<Document> libComp, 
@@ -109,7 +108,18 @@ public:
      //! \brief Returns the external program requirements of the plugin.
      virtual QList<IPlugin::ExternalProgramRequirement> getProgramRequirements();
 
+public slots:
+
+    /*!
+     *  Called when an error is reported to us.
+     *
+	 *      @param [in] report			The error message.
+	 */
+    void onErrorReport(const QString& report);
+
 private:
+    //! The plugin utility provided by call runGenerator.
+    IPluginUtility* utility_;
 };
 
 #endif // SAMPLEGENERATORPLUGIN_H

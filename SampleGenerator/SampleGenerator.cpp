@@ -18,8 +18,8 @@
 //-----------------------------------------------------------------------------
 // Function: SampleGenerator::SampleGenerator()
 //-----------------------------------------------------------------------------
-SampleGenerator::SampleGenerator( QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData,
-    IPluginUtility* utility ) : parsedData_( parsedData ), utility_( utility )
+SampleGenerator::SampleGenerator(QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData)
+    : QObject(0), parsedData_(parsedData)
 {
 }
 
@@ -33,11 +33,8 @@ SampleGenerator::~SampleGenerator()
 //-----------------------------------------------------------------------------
 // Function: SampleGenerator::generate()
 //-----------------------------------------------------------------------------
-void SampleGenerator::generate(QSharedPointer<Component> topComponent)
+void SampleGenerator::generate(QSharedPointer<Component> topComponent, const QString& outputPath)
 {
-    // Print info about results.
-    utility_->printInfo( QObject::tr("Found %1 matching file sets.").arg(parsedData_->count()) );
-
     // Find a fitting file set from the top component,
     QString fileSetName = QString("sampleFileSet");
     QSharedPointer<FileSet> fileSet = topComponent->getFileSet(fileSetName);
@@ -49,19 +46,15 @@ void SampleGenerator::generate(QSharedPointer<Component> topComponent)
         topComponent->getFileSets()->append(fileSet);
     }
 
-    // Get the path to the top component.
-    QString componentXmlPath = utility_->getLibraryInterface()->getPath(topComponent->getVlnv());
-    QFileInfo pathInfo(componentXmlPath);
-
-    // The new file will be in the same path.
-    QString filePath = pathInfo.absolutePath() + "/sampleGeneratedFile.txt";
+    // The path for the new file.
+    QString filePath = outputPath + "/sampleGeneratedFile.txt";
     QFile sampleFile(filePath);
 
     // If it cannot be written, then it is too bad.
-    if ( !sampleFile.open(QIODevice::WriteOnly) )
+    if (!sampleFile.open(QIODevice::WriteOnly))
     {
-        utility_->printError("Could not open the sample at location " + filePath);
-        utility_->printError("Reason: " + sampleFile.errorString());
+        emit reportError(tr("Could not open the output file at location %1").arg(filePath));
+        emit reportError(tr("Reason: %1").arg(sampleFile.errorString()));
         return;
     }
 
@@ -69,7 +62,7 @@ void SampleGenerator::generate(QSharedPointer<Component> topComponent)
     QTextStream outStream(&sampleFile);
 
     // The content: Name of each found file set.
-    foreach( QSharedPointer<SampleParser::SampleData> data, *parsedData_ )
+    foreach(QSharedPointer<SampleParser::SampleData> data, *parsedData_)
     {
         outStream << data->fileSet->name() << endl;
     }
@@ -80,6 +73,6 @@ void SampleGenerator::generate(QSharedPointer<Component> topComponent)
     // Add the file to file set. Notice that the path is relative to the xml file of the
     // component where the file belongs to.
     QSharedPointer<File> sampleIPXACTFile =
-    QSharedPointer<File>( new File( "sampleGeneratedFile.txt", "textFile" ) );
+    QSharedPointer<File>(new File("sampleGeneratedFile.txt", "textFile"));
     fileSet->addFile(sampleIPXACTFile);
 }

@@ -1,5 +1,3 @@
-// Copyright Tampere University of Technology
-
 #ifndef SAMPLEIMPORT_GLOBAL_H
 #define SAMPLEIMPORT_GLOBAL_H
 
