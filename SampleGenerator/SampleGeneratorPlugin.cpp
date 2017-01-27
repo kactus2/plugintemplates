@@ -109,39 +109,34 @@ QIcon SampleGeneratorPlugin::getIcon() const
 //-----------------------------------------------------------------------------
 // Function: SampleGeneratorPlugin::checkGeneratorSupport()
 //-----------------------------------------------------------------------------
-bool SampleGeneratorPlugin::checkGeneratorSupport( QSharedPointer<Document const> libComp,
-    QSharedPointer<Document const> libDesConf,
-    QSharedPointer<Document const> libDes ) const
+bool SampleGeneratorPlugin::checkGeneratorSupport(QSharedPointer<Component const> component,
+    QSharedPointer<Design const> design,
+    QSharedPointer<DesignConfiguration const> designConfiguration) const
 {
     // Must be ran on a design.
-    return ( libDes != 0 && libDesConf != 0 );
+    return (design != 0 && designConfiguration != 0);
 }
 
 //-----------------------------------------------------------------------------
 // Function: SampleGeneratorPlugin::runGenerator()
 //-----------------------------------------------------------------------------
 void SampleGeneratorPlugin::runGenerator(IPluginUtility* utility, 
-    QSharedPointer<Document> libComp,
-    QSharedPointer<Document> libDesConf,
-    QSharedPointer<Document> libDes)
+    QSharedPointer<Component> component,
+    QSharedPointer<Design> design,
+    QSharedPointer<DesignConfiguration> designConfiguration)
 {
+    // This time, a design is required
+    if (!design)
+    {
+        utility->printError( "Sample generator got a null design." );
+    }
+
     // This is needed as a member variable to be used more conveniently.
     utility_ = utility;
 
-    // Dynamic cast to component, as it is needed that way.
-    QSharedPointer<Component> topComponent = libComp.dynamicCast<Component>();
-    // Dynamic cast to design, as it is needed that way.
-    QSharedPointer<const Design> design = libDes.dynamicCast<Design const>();
-
-    // In principle, these could be null. They must not be.
-    if (!topComponent || !design)
-    {
-        utility->printError( "Sample generator received null top component or design!" );
-    }
-
     // Parse the matching file sets.
     SampleParser sparser;
-    sparser.parse(utility->getLibraryInterface(),design);
+    sparser.parse(utility->getLibraryInterface(), design);
 
     // Print info about results.
     utility->printInfo(QObject::tr("Found %1 matching file sets.").arg(sparser.getParsedData()->count()));
@@ -152,17 +147,17 @@ void SampleGeneratorPlugin::runGenerator(IPluginUtility* utility,
         this, SLOT(onErrorReport(const QString&)), Qt::UniqueConnection);
 
     // Get the path to the top component: The new file will be in the same path.
-    QString componentXmlPath = utility->getLibraryInterface()->getPath(topComponent->getVlnv());
+    QString componentXmlPath = utility->getLibraryInterface()->getPath(component->getVlnv());
     QFileInfo pathInfo(componentXmlPath);
 
     // Generate.
-    sgenerator.generate(topComponent, pathInfo.absolutePath());
+    sgenerator.generate(component, pathInfo.absolutePath());
 
     // Inform when done.
     utility->printInfo( "Sample generation complete." );
 
     // Top component may have been affected by changes -> save.
-    utility->getLibraryInterface()->writeModelToFile(libComp);
+    utility->getLibraryInterface()->writeModelToFile(component);
 }
 
 //-----------------------------------------------------------------------------
