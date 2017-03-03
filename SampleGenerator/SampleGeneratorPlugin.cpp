@@ -10,7 +10,7 @@
 // Sample generator plugin.
 //-----------------------------------------------------------------------------
 
-#include "SampleGenerator.h"
+#include "SampleWriter.h"
 #include "SampleGeneratorPlugin.h"
 
 #include <QCoreApplication>
@@ -141,9 +141,9 @@ void SampleGeneratorPlugin::runGenerator(IPluginUtility* utility,
     // Print info about results.
     utility->printInfo(QObject::tr("Found %1 matching file sets.").arg(sparser.getParsedData()->count()));
 
-    // Initialize generator, provide the parsed data, catch its error signals.
-    SampleGenerator sgenerator(sparser.getParsedData());
-    connect(&sgenerator, SIGNAL(reportError(const QString&)), 
+    // Initialize writer, provide the parsed data, catch its error signals.
+    SampleWriter swriter(sparser.getParsedData());
+    connect(&swriter, SIGNAL(reportError(const QString&)), 
         this, SLOT(onErrorReport(const QString&)), Qt::UniqueConnection);
 
     // Get the path to the top component: The new file will be in the same path.
@@ -151,7 +151,7 @@ void SampleGeneratorPlugin::runGenerator(IPluginUtility* utility,
     QFileInfo pathInfo(componentXmlPath);
 
     // Generate.
-    sgenerator.generate(component, pathInfo.absolutePath());
+    swriter.write(component, pathInfo.absolutePath());
 
     // Inform when done.
     utility->printInfo( "Sample generation complete." );

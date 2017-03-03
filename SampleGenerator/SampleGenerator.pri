@@ -7,11 +7,11 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ./SampleGenerator.h \
-    ./SampleParser.h \
+HEADERS += ./SampleParser.h \
     ./samplegenerator_global.h \
-    ./SampleGeneratorPlugin.h
-SOURCES += ./SampleGenerator.cpp \
+    ./SampleGeneratorPlugin.h \
+    ./SampleWriter.h
+SOURCES += ./SampleWriter.cpp \
     ./SampleGeneratorPlugin.cpp \
     ./SampleParser.cpp
 RESOURCES += SampleGenerator.qrc

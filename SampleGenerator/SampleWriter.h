@@ -1,23 +1,23 @@
 //-----------------------------------------------------------------------------
-// File: SampleGenerator.h
+// File: SampleWriter.h
 //-----------------------------------------------------------------------------
 // Project: Kactus2
 // Author: Janne Virtanen
 // Date: 11.05.2016
 //
 // Description:
-// Sample generator.
+// Writer for the sample generator.
 //-----------------------------------------------------------------------------
 
-#ifndef SAMPLEGENERATOR_H
-#define SAMPLEGENERATOR_H
+#ifndef SAMPLEWRITER_H
+#define SAMPLEWRITER_H
 
 #include "samplegenerator_global.h"
 #include "SampleParser.h"
 
 #include <IPXACTmodels/Component/Component.h>
 
-class SampleGenerator : public QObject
+class SampleWriter : public QObject
 {
     Q_OBJECT
 
@@ -27,18 +27,18 @@ public:
      *
      *      @param [in] parsedData    The data parsed by sample parser.
      */
-    SampleGenerator(QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData);
+    SampleWriter(QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData);
 
     //! The destructor.
-    ~SampleGenerator();
+    ~SampleWriter();
 
     /*!
-    *  Generates a file with the names of the file sets within the parsed data.
+    *  Writes a file with the names of the file sets within the parsed data.
     *
-    *      @param [in] topComponent         The top component of the design, where the generated file will be placed.
+    *      @param [in] topComponent         The top component of the design, where the written file will be placed.
     *      @param [in] componentXmlPath     The absolute path to the topComponent.
     */
-    void generate(QSharedPointer<Component> topComponent, const QString& outputPath);
+    void write(QSharedPointer<Component> topComponent, const QString& outputPath);
 
 signals:
 	
@@ -53,4 +53,4 @@ private:
     QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData_;
 };
 
-#endif // SAMPLEGENERATOR_H
+#endif // SAMPLEWRITER_H

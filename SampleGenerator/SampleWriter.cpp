@@ -1,39 +1,39 @@
 //-----------------------------------------------------------------------------
-// File: SampleGenerator.cpp
+// File: SampleWriter.cpp
 //-----------------------------------------------------------------------------
 // Project: Kactus 2
 // Author: Janne Virtanen
 // Date: 11.05.2016
 //
 // Description:
-// Sample generator.
+// Writer for the sample generator.
 //-----------------------------------------------------------------------------
 
-#include "SampleGenerator.h"
+#include "SampleWriter.h"
 
 #include <IPXACTmodels/Component/FileSet.h>
 #include <QTextStream>
 #include <QFileInfo>
 
 //-----------------------------------------------------------------------------
-// Function: SampleGenerator::SampleGenerator()
+// Function: SampleWriter::SampleWriter()
 //-----------------------------------------------------------------------------
-SampleGenerator::SampleGenerator(QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData)
+SampleWriter::SampleWriter(QSharedPointer<QList<QSharedPointer<SampleParser::SampleData> > > parsedData)
     : QObject(0), parsedData_(parsedData)
 {
 }
 
 //-----------------------------------------------------------------------------
-// Function: SampleGenerator::~SampleGenerator()
+// Function: SampleWriter::~SampleWriter()
 //-----------------------------------------------------------------------------
-SampleGenerator::~SampleGenerator()
+SampleWriter::~SampleWriter()
 {
 }
 
 //-----------------------------------------------------------------------------
-// Function: SampleGenerator::generate()
+// Function: SampleWriter::generate()
 //-----------------------------------------------------------------------------
-void SampleGenerator::generate(QSharedPointer<Component> topComponent, const QString& outputPath)
+void SampleWriter::write(QSharedPointer<Component> topComponent, const QString& outputPath)
 {
     // Find a fitting file set from the top component,
     QString fileSetName = QString("sampleFileSet");
