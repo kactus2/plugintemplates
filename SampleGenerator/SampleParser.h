@@ -18,7 +18,7 @@
 #include <IPXACTmodels/Design/Design.h>
 #include <IPXACTmodels/Component/FileSet.h>
 
-#include <library/LibraryManager/libraryinterface.h>
+#include <library/LibraryInterface.h>
 
 class SampleParser
 {
