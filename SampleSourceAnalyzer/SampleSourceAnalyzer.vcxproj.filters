@@ -36,23 +36,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SampleSourceAnalyzer.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SampleSourceAnalyzer.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Template\moc_SampleSourceAnalyzer.cpp">
-      <Filter>Generated Files\Template</Filter>
-    </ClCompile>
+    
+    
+    
     <ClCompile Include="SampleSourceAnalyzer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="SampleSourceAnalyzer.h">
+    <QtMoc Include="SampleSourceAnalyzer.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <None Include="samplesourceanalyzer.json" />

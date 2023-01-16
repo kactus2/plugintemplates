@@ -6,15 +6,11 @@ TEMPLATE = lib
 TARGET = SampleSourceAnalyzer
 DESTDIR = ../../executable/Plugins
 QT += core xml widgets gui
-CONFIG += plugin release
+CONFIG += plugin release c++17
 DEFINES += SAMPLESOURCEANALYZER_LIB QT_XML_LIB QT_XMLPATTERNS_LIB QT_DLL QT_HELP_LIB QT_WIDGETS_LIB
 INCLUDEPATH += ./GeneratedFiles \
     . \
-    ./../.. \
-    $(QTDIR)/../qttools/include \
-    $(QTDIR)/../qttools/include/QtHelp
-LIBS += -L"./../../executable" \
-    -lKactus2
+    ./../..
 DEPENDPATH += .
 MOC_DIR += ./GeneratedFiles/release
 OBJECTS_DIR += release

@@ -64,7 +64,7 @@ void SampleWriter::write(QSharedPointer<Component> topComponent, const QString& 
     // The content: Name of each found file set.
     foreach(QSharedPointer<SampleParser::SampleData> data, *parsedData_)
     {
-        outStream << data->fileSet->name() << endl;
+        outStream << data->fileSet->name() << Qt::endl;
     }
 
     // Close after it is done.

@@ -14,8 +14,9 @@
 
 #include "samplegenerator_global.h"
 
-#include <Plugins/PluginSystem/GeneratorPlugin/IGeneratorPlugin.h>
-#include <Plugins/PluginSystem/IPluginUtility.h>
+#include <KactusAPI/include/IPlugin.h>
+#include <KactusAPI/include/IGeneratorPlugin.h>
+#include <KactusAPI/include/IPluginUtility.h>
 
 class SAMPLEGENERATOR_EXPORT SampleGeneratorPlugin : public QObject, public IGeneratorPlugin
 {
@@ -55,12 +56,12 @@ public:
     /*!
      *  Returns the licence of the plugin.
      */
-    virtual QString getLicence() const;
+    virtual QString getLicense() const;
 
     /*!
      *  Returns the holder of the licence of the plugin.
      */
-    virtual QString getLicenceHolder() const;
+    virtual QString getLicenseHolder() const;
 
     /*!
      *  Returns the settings widget.
@@ -108,6 +109,7 @@ public:
 
      //! \brief Returns the external program requirements of the plugin.
      virtual QList<IPlugin::ExternalProgramRequirement> getProgramRequirements();
+
 
 public slots:
 

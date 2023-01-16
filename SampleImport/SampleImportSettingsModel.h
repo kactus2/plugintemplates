@@ -12,7 +12,7 @@
 #ifndef SAMPLEIMPORTSETTINGSMODEL_H
 #define SAMPLEIMPORTSETTINGSMODEL_H
 
-#include <Plugins/PluginSystem/PluginSettingsModel.h>
+#include <KactusAPI/include//PluginSettingsModel.h>
 
 //-----------------------------------------------------------------------------
 //! A plugin settings model.

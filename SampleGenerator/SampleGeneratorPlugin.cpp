@@ -69,7 +69,7 @@ QString SampleGeneratorPlugin::getVendor() const
 //-----------------------------------------------------------------------------
 // Function: SampleGeneratorPlugin::getLicence()
 //-----------------------------------------------------------------------------
-QString SampleGeneratorPlugin::getLicence() const
+QString SampleGeneratorPlugin::getLicense() const
 {
     return tr("MIT");
 }
@@ -77,7 +77,7 @@ QString SampleGeneratorPlugin::getLicence() const
 //-----------------------------------------------------------------------------
 // Function: SampleGeneratorPlugin::getLicenceHolder()
 //-----------------------------------------------------------------------------
-QString SampleGeneratorPlugin::getLicenceHolder() const
+QString SampleGeneratorPlugin::getLicenseHolder() const
 {
     return tr("Public");
 }

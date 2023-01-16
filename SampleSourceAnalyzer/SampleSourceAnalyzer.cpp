@@ -63,17 +63,17 @@ QString SampleSourceAnalyzer::getVendor() const
 }
 
 //-----------------------------------------------------------------------------
-// Function: SampleSourceAnalyzer::getLicence()
+// Function: SampleSourceAnalyzer::getLicense()
 //-----------------------------------------------------------------------------
-QString SampleSourceAnalyzer::getLicence() const
+QString SampleSourceAnalyzer::getLicense() const
 {
     return tr("MIT");
 }
 
 //-----------------------------------------------------------------------------
-// Function: SampleSourceAnalyzer::getLicenceHolder()
+// Function: SampleSourceAnalyzer::getLicenseHolder()
 //-----------------------------------------------------------------------------
-QString SampleSourceAnalyzer::getLicenceHolder() const
+QString SampleSourceAnalyzer::getLicenseHolder() const
 {
     return tr("Public");
 }

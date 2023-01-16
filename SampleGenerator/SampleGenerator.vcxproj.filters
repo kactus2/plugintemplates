@@ -31,41 +31,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SampleGeneratorPlugin.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SampleGeneratorPlugin.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
+    
+    
     <ClCompile Include="SampleGeneratorPlugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_SampleGenerator.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
+    
     <ClCompile Include="SampleParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SampleWriter.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SampleWriter.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
+    
+    
     <ClCompile Include="SampleWriter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="SampleGeneratorPlugin.h">
+    <QtMoc Include="SampleGeneratorPlugin.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="SampleGenerator.qrc">
+    </QtMoc>
+    <QtRcc Include="SampleGenerator.qrc">
       <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="SampleWriter.h">
+    </QtRcc>
+    <QtMoc Include="SampleWriter.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <None Include="SampleGenerator.png">

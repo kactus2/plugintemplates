@@ -6,7 +6,7 @@ TEMPLATE = lib
 TARGET = SampleImport
 DESTDIR = ../../executable/Plugins
 QT += core xml widgets gui
-CONFIG += release
+CONFIG += plugin release c++17
 DEFINES += QT_DLL QT_WIDGETS_LIB QT_XML_LIB SAMPLEIMPORT_LIB
 INCLUDEPATH += ./../.. \
     ./GeneratedFiles \

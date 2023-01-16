@@ -39,23 +39,19 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="SampleImportPlugin.h">
+    <QtMoc Include="SampleImportPlugin.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="SampleImportSettingsWidget.h">
+    </QtMoc>
+    <QtMoc Include="SampleImportSettingsWidget.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="SampleImportSettingsModel.h">
+    </QtMoc>
+    <QtMoc Include="SampleImportSettingsModel.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SampleImportPlugin.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SampleImportPlugin.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
+    
+    
     <ClCompile Include="SampleImportPlugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -65,17 +61,9 @@
     <ClCompile Include="SampleImportSettingsWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SampleImportSettingsWidget.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SampleImportSettingsWidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SampleImportSettingsModel.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SampleImportSettingsModel.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
+    
+    
+    
+    
   </ItemGroup>
 </Project>

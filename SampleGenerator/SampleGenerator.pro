@@ -6,12 +6,11 @@ TEMPLATE = lib
 TARGET = SampleGenerator
 DESTDIR = ../../executable/Plugins
 QT += core xml widgets gui
-CONFIG += plugin release
+CONFIG += plugin release c++17
 DEFINES += QT_DLL QT_XML_LIB SAMPLEGENERATOR_LIB QT_WIDGETS_LIB
-INCLUDEPATH += ./../../.. \
+INCLUDEPATH += ./../.. \
     ./GeneratedFiles \
-    . \
-    $(QTDIR)/../qttools/include 
+    .
 LIBS += -L"./../../../executable" \
     -lIPXACTmodels
 DEPENDPATH += .

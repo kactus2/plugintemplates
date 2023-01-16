@@ -7,7 +7,7 @@ TEMPLATE = app
 TARGET = tst_SampleGenerator
 
 QT += core xml gui testlib widgets
-CONFIG += testcase console
+CONFIG += testcase console c++17
 
 DEFINES += SAMPLEGENERATOR_LIB
 

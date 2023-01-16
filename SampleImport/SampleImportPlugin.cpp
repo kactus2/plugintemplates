@@ -13,7 +13,7 @@
 #include "SampleImportSettingsWidget.h"
 
 #include <IPXACTmodels/Component/Component.h>
-#include <Plugins/PluginSystem/ImportPlugin/ImportColors.h>
+#include <KactusAPI/include//ImportColors.h>
 
 #include <QString>
 #include <QRegularExpression>
@@ -68,7 +68,7 @@ QString SampleImportPlugin::getVendor() const
 //-----------------------------------------------------------------------------
 // Function: SampleImport::getLicence()
 //-----------------------------------------------------------------------------
-QString SampleImportPlugin::getLicence() const
+QString SampleImportPlugin::getLicense() const
 {
     return tr("MIT");
 }
@@ -76,7 +76,7 @@ QString SampleImportPlugin::getLicence() const
 //-----------------------------------------------------------------------------
 // Function: SampleImport::getLicenceHolder()
 //-----------------------------------------------------------------------------
-QString SampleImportPlugin::getLicenceHolder() const
+QString SampleImportPlugin::getLicenseHolder() const
 {
     return tr("Public");
 }
@@ -127,7 +127,7 @@ QString SampleImportPlugin::getCompatibilityWarnings() const
 //-----------------------------------------------------------------------------
 // Function: SampleImport::import()
 //-----------------------------------------------------------------------------
-void SampleImportPlugin::import(QString const& input, QSharedPointer<Component> targetComponent)
+void SampleImportPlugin::import(QString const& input, QString const& componentDeclaration, QSharedPointer<Component> targetComponent)
 {
     if (settingsModel_->getCurrentSettings()->findMain)
     {
@@ -167,4 +167,20 @@ void SampleImportPlugin::import(QString const& input, QSharedPointer<Component> 
 void SampleImportPlugin::setHighlighter(Highlighter* highlighter)
 {
     highlighter_ = highlighter;
+}
+
+//-----------------------------------------------------------------------------
+// Function: SampleImport::getFileComponents()
+//-----------------------------------------------------------------------------
+QStringList SampleImportPlugin::getFileComponents(QString const& input) const
+{
+    return QStringList();
+}
+
+//-----------------------------------------------------------------------------
+// Function: SampleImport::getComponentName()
+//-----------------------------------------------------------------------------
+QString SampleImportPlugin::getComponentName(QString const& componentDeclaration) const
+{
+    return QString();
 }

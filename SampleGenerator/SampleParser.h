@@ -18,7 +18,7 @@
 #include <IPXACTmodels/Design/Design.h>
 #include <IPXACTmodels/Component/FileSet.h>
 
-#include <library/LibraryInterface.h>
+#include <KactusAPI/include/LibraryInterface.h>
 
 class SampleParser
 {
