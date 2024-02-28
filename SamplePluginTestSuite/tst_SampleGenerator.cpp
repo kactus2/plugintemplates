@@ -19,7 +19,7 @@
 #include <IPXACTmodels/Design/ComponentInstance.h>
 
 #include <Plugins/SampleGenerator/SampleParser.h>
-#include <Plugins/SampleGenerator/SampleGenerator.h>
+#include <Plugins/SampleGenerator/SampleWriter.h>
 
 class tst_SampleGenerator : public QObject
 {
@@ -95,10 +95,10 @@ void tst_SampleGenerator::cleanupTestCase()
 void tst_SampleGenerator::init()
 {
     VLNV vlnv(VLNV::COMPONENT, "Test", "TestLibrary", "TestComponent", "1.0");
-    topComponent_ = QSharedPointer<Component>(new Component(vlnv));
+    topComponent_ = QSharedPointer<Component>(new Component(vlnv, Document::Revision::Std14));
 
     VLNV designVlnv(VLNV::DESIGN, "Test", "TestLibrary", "TestDesign", "1.0");
-    design_ = QSharedPointer<Design>(new Design(designVlnv));
+    design_ = QSharedPointer<Design>(new Design(designVlnv, Document::Revision::Std14));
 
     topView_ = QSharedPointer<View>(new View("topView"));
 
@@ -126,7 +126,7 @@ void tst_SampleGenerator::cleanup()
 //-----------------------------------------------------------------------------
 QSharedPointer<Component> tst_SampleGenerator::createComponent(VLNV componentVLNV)
 {
-    QSharedPointer<Component> testComponent = QSharedPointer<Component>(new Component(componentVLNV));
+    QSharedPointer<Component> testComponent = QSharedPointer<Component>(new Component(componentVLNV, Document::Revision::Std14));
     library_.addComponent(testComponent);
     return testComponent;
 }
@@ -277,8 +277,8 @@ void tst_SampleGenerator::testGeneration()
     sdata->fileSet = testFileSet;
     datas->append(sdata);
 
-    SampleGenerator sgenerator(datas);
-    sgenerator.generate(topComponent_, ".");
+    SampleWriter swriter(datas);
+    swriter.write(topComponent_, ".");
 
     verifyOutputContains(fileSetName);
 }

@@ -8,9 +8,9 @@ message("You are running qmake on a generated .pro file. This may not work!")
 
 
 HEADERS += ../../MockObjects/LibraryMock.h \
-    ../../../Plugins/SampleGenerator/SampleGenerator.h \
+    ../../../Plugins/SampleGenerator/SampleWriter.h \
     ../../../Plugins/SampleGenerator/SampleParser.h
 SOURCES += ./tst_SampleGenerator.cpp \
     ../../MockObjects/LibraryMock.cpp \
     ../../../Plugins/SampleGenerator/SampleParser.cpp \
-    ../../../Plugins/SampleGenerator/SampleGenerator.cpp
+    ../../../Plugins/SampleGenerator/SampleWriter.cpp
