@@ -155,7 +155,10 @@ void SampleImportPlugin::import(QString const& input, QString const& componentDe
     // If it does not exist, create and append to the ports.
     if (!port)
     {
-        port = QSharedPointer<Port>(new Port());       
+        port = QSharedPointer<Port>(new Port());
+        auto wire = QSharedPointer<Wire>(new Wire());
+        wire->setDirection(DirectionTypes::Direction::IN);
+        port->setWire(wire);       
         targetComponent->getPorts()->append(port);
         port->setName(portName);
     }
